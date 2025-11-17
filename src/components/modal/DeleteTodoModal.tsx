@@ -27,7 +27,7 @@ export default function DeleteTodoModal({ task }: { task: ITodo }) {
 
       <button
         onClick={() => setOpenModal(true)}
-        className="hover:text-red-600 cursor-pointer"
+        className="hover:text-red-600 bg-gray-200/60 p-2 rounded-md cursor-pointer"
       >
         <FiTrash2 size={18} />
       </button>

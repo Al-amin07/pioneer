@@ -1,7 +1,11 @@
 "use client";
+import { useAuth } from "@/provider/UserProvider";
+import { getMyProfile } from "@/services/profile";
+import { IProfileData } from "@/types/user.type";
+import { CircleUserRound } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   FiHome,
   FiCheckSquare,
@@ -12,7 +16,9 @@ import {
 
 export default function Sidebar() {
   const [open, setOpen] = useState(true);
+  const { logOut } = useAuth()!;
   const pathname = usePathname();
+  const router = useRouter();
   const menuItems = [
     {
       id: "/dashboard",
@@ -30,6 +36,20 @@ export default function Sidebar() {
       icon: <FiUser />,
     },
   ];
+  const [user, setUser] = useState<IProfileData | null>(null);
+  useEffect(() => {
+    const getProfile = async () => {
+      const data = await getMyProfile();
+      console.log({ data });
+      setUser(data);
+    };
+    getProfile();
+  }, []);
+
+  const handleLogout = async () => {
+    logOut();
+    router.push("/");
+  };
 
   return (
     <div className="relative">
@@ -42,18 +62,22 @@ export default function Sidebar() {
       </button>
 
       <aside
-        className={`bg-[#0F2544] text-white w-64 min-h-screen p-6 flex flex-col transition-all duration-300
+        className={`bg-[#0F2544] text-white w-[340px] min-h-screen h-auto p-6 flex flex-col transition-all duration-300
         ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
       >
         {/* Profile Section */}
         <div className="text-center mb-10">
-          <img
-            src="/avatar.png"
-            className="w-20 h-20 rounded-full mx-auto mb-3"
-            alt="User"
-          />
-          <h3 className="text-lg font-semibold">amanuel</h3>
-          <p className="text-sm text-gray-300">amanuel@gmail.com</p>
+          {user?.profile_image ? (
+            <img
+              src={user?.profile_image as string}
+              className="w-20 h-20 rounded-full mx-auto mb-3"
+              alt="User"
+            />
+          ) : (
+            <CircleUserRound className="w-20 h-20 rounded-full mx-auto mb-3" />
+          )}
+          <h3 className="text-lg font-semibold">{user?.first_name}</h3>
+          <p className="text-sm text-gray-300">{user?.email}</p>
         </div>
 
         {/* Nav */}
@@ -73,7 +97,10 @@ export default function Sidebar() {
 
         {/* Logout */}
         <div className="mt-auto pt-10">
-          <button className="flex items-center gap-3 hover:bg-white/10 p-2 rounded-md w-full">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 hover:bg-white/10 p-2 rounded-md w-full"
+          >
             <FiLogOut /> Logout
           </button>
         </div>

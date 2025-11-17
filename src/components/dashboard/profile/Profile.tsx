@@ -63,11 +63,11 @@ export default function ProfileDetails({ profile }: { profile: IProfileData }) {
     "w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400";
 
   return (
-    <div className="bg-white p-8 border rounded-xl shadow-sm mt-8">
+    <div className="bg-white p-8  rounded-xl shadow-sm mt-8">
       <h2 className="text-xl font-semibold mb-6">Account Information</h2>
 
       {/* Profile Upload */}
-      <div className="flex items-center gap-6 mb-8">
+      <div className="flex items-center border px-5 py-3 border-[#A1A3ABA1] max-w-md rounded-xl gap-6 mb-8">
         {/* Profile Image Box */}
         <div className="relative w-24 h-24">
           <img
@@ -96,14 +96,17 @@ export default function ProfileDetails({ profile }: { profile: IProfileData }) {
         {/* Upload Button */}
         <label
           htmlFor="profileUpload"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-700 transition"
+          className="bg-[#5272FF] text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-700 transition"
         >
           Upload New Photo
         </label>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 border border-[#A1A3ABA1] p-8 rounded-md"
+      >
         {/* Name */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -164,17 +167,17 @@ export default function ProfileDetails({ profile }: { profile: IProfileData }) {
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-4 mt-6">
+        <div className="flex justify-center gap-4 mt-6">
           <button
             type="submit"
-            className="bg-blue-600 disabled:opacity-70 disabled:cursor-not-allowed text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
+            className="bg-[#5272FF] disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed text-white px-5 py-2 rounded-md hover:bg-blue-400 transition"
           >
             {isSubmitting ? "Saving...." : "Save Changes"}
           </button>
 
           <button
             type="button"
-            className="bg-gray-200 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-300 transition"
+            className="bg-gray-200 text-gray-700 px-5 py-2 cursor-pointer rounded-md hover:bg-gray-300 transition"
           >
             Cancel
           </button>

@@ -51,7 +51,7 @@ export default function CreasteTodoModal() {
     <>
       <button
         onClick={() => setOpenModal(true)}
-        className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-blue-700"
+        className="bg-[#5272FF] cursor-pointer text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-blue-700"
       >
         <FiPlus /> New Task
       </button>

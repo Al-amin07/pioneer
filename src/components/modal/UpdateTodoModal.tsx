@@ -69,7 +69,7 @@ export default function UpdateTodoModal({ todo }: { todo: ITodo }) {
     <>
       <button
         onClick={() => setOpenModal(true)}
-        className="hover:text-blue-600 cursor-pointer"
+        className="hover:text-blue-600 bg-gray-200/60 p-2 rounded-md  cursor-pointer"
       >
         <FiEdit2 size={18} />
       </button>

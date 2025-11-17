@@ -1,5 +1,6 @@
 import { FiBell, FiCalendar } from "react-icons/fi";
-
+import img from '@/assets/Group.png'
+import Image from "next/image";
 export default function Topbar() {
   const date = new Date();
   const formatted = date.toLocaleDateString("en-US", {
@@ -13,8 +14,8 @@ export default function Topbar() {
     <header className="w-full flex justify-between items-center px-10 py-4 bg-white shadow-sm">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <img src="/logo.svg" className="w-10" />
-        <h1 className="font-bold text-xl">DREAMY SOFTWARE</h1>
+        <Image src={img} alt="Company name" className="w-10" />
+        <h1 className=" text-lg leading-tight"><span className="font-semibold">DREAMY</span> <br /> SOFTWARE</h1>
       </div>
 
       {/* Icons + Date */}

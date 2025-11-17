@@ -3,10 +3,11 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 const url = "https://todo-app.pioneeralpha.com/api";
-export const getAllTodos = async () => {
+export const getAllTodos = async (search: string) => {
   try {
+    console.log({ search });
     const accessToken = (await cookies()).get("access")?.value as string;
-    const res = await fetch(`${url}/todos/`, {
+    const res = await fetch(`${url}/todos/?search=${search}`, {
       method: "GET",
 
       next: {
@@ -48,7 +49,6 @@ export const createTodo = async (todoData: FormData) => {
 };
 export const updateTodo = async (todoId: number, todoData: FormData) => {
   try {
-    console.log({ todoId, todoData });
     const accessToken = (await cookies()).get("access")?.value as string;
     const res = await fetch(`${url}/todos/${todoId}/`, {
       method: "PATCH",

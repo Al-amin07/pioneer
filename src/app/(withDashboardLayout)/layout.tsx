@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <div className="flex-1">
         <Topbar />
 
-        <div className="px-10">{children}</div>
+        <div className="px-10 py-10">{children}</div>
       </div>
     </div>
   );
